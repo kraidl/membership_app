@@ -5,42 +5,43 @@ import Teams from "./Teams";
 import ToDoList from "./ToDoList";
 
 export default function App() {
-  const MEMBERS = "members";
-  const TEAMS = "teams";
-  const TO_DO_LIST = "todolist";
-  const [activeTab, setActiveTab] = useState(MEMBERS);
-  const activeTabCSS = "border-b-4 text-white border-purple-800";
+  const members = "members";
+  const teams = "teams";
+  const toDoList = "todolist";
+  const [activeTab, setActiveTab] = useState(members);
+  const activeTabCSS = "activeTabCSS";
+  const inactiveTabCSS = "inactiveTabCSS";
 
   return (
     <HashRouter>
       <button
         type="button"
-        className={`${activeTab === MEMBERS ? activeTabCSS : ""}`}
+        className={activeTab === toDoList ? activeTabCSS : inactiveTabCSS}
       >
-        <NavLink onClick={() => setActiveTab(MEMBERS)} to="/">
+        <NavLink onClick={() => setActiveTab(members)} to="/">
           MEMBERS
         </NavLink>
       </button>
       <button
         type="button"
-        className={`${activeTab === TEAMS ? activeTabCSS : ""}`}
+        className={activeTab === toDoList ? activeTabCSS : inactiveTabCSS}
       >
-        <NavLink onClick={() => setActiveTab(TEAMS)} to={`/${TEAMS}`}>
+        <NavLink onClick={() => setActiveTab(teams)} to={`/${teams}`}>
           TEAMS
         </NavLink>
       </button>
       <button
         type="button"
-        className={`${activeTab === TO_DO_LIST ? activeTabCSS : ""}`}
+        className={activeTab === toDoList ? activeTabCSS : inactiveTabCSS}
       >
-        <NavLink onClick={() => setActiveTab(TO_DO_LIST)} to={`/${TO_DO_LIST}`}>
+        <NavLink onClick={() => setActiveTab(toDoList)} to={`/${toDoList}`}>
           TO-DO LIST
         </NavLink>
       </button>
       <Routes>
         <Route exact path="/" element={<Members />} />
-        <Route path={`/${TEAMS}`} element={<Teams />} />
-        <Route path={`/${TO_DO_LIST}`} element={<ToDoList />} />
+        <Route path={`/${teams}`} element={<Teams />} />
+        <Route path={`/${toDoList}`} element={<ToDoList />} />
       </Routes>
     </HashRouter>
   );
