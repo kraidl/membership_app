@@ -1,15 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { getTeams } from "./services/requests";
+import React from "react";
 
-export default function Teams() {
-  const [teams, setTeams] = useState([]);
-
-  useEffect(() => {
-    getTeams().then((data) => {
-      setTeams(data.teams);
-    });
-  }, []);
-
+export default function Teams({ teams }) {
   return (
     <table>
       <thead>

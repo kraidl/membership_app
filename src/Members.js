@@ -1,15 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { getMembers } from "./services/requests";
+import React from "react";
 
-export default function Members() {
-  const [members, setMembers] = useState([]);
-
-  useEffect(() => {
-    getMembers().then((data) => {
-      setMembers(data.members);
-    });
-  }, []);
-
+export default function Members({ members }) {
   return (
     <table>
       <thead>
