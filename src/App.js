@@ -55,24 +55,17 @@ export default function App() {
 
   return (
     <HashRouter>
-      <button
-        type="button"
-        className={activeTab === members ? activeTabCSS : inactiveTabCSS}
-      >
+      <button className={activeTab === members ? activeTabCSS : inactiveTabCSS}>
         <NavLink onClick={() => changeTab(members)} to="/">
           MEMBERS
         </NavLink>
       </button>
-      <button
-        type="button"
-        className={activeTab === teams ? activeTabCSS : inactiveTabCSS}
-      >
+      <button className={activeTab === teams ? activeTabCSS : inactiveTabCSS}>
         <NavLink onClick={() => changeTab(teams)} to={`/${teams}`}>
           TEAMS
         </NavLink>
       </button>
       <button
-        type="button"
         className={activeTab === toDoList ? activeTabCSS : inactiveTabCSS}
       >
         <NavLink onClick={() => changeTab(toDoList)} to={`/${toDoList}`}>
@@ -85,7 +78,7 @@ export default function App() {
           path="/"
           element={
             showDetails ? (
-              <TeamDetails details={teamDetails[currentTeamId]} />
+              <TeamDetails team={teamDetails[currentTeamId]} />
             ) : (
               <Members
                 members={memberList}

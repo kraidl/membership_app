@@ -15,9 +15,9 @@ export default function Members({ members, toggleTeamDetails }) {
             <tr key={member.id}>
               <td>{`${member.first_name} ${member.last_name}`}</td>
               <td>
-                <a onClick={() => toggleTeamDetails(member.team.id)}>
+                <button onClick={() => toggleTeamDetails(member.team.id)}>
                   {member.team.name}
-                </a>
+                </button>
               </td>
             </tr>
           );
