@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function TeamDetails({ teamDetails }) {
-  return <div></div>;
+export default function TeamDetails({ details }) {
+  return <div>TEAM DETAILS</div>;
 }

@@ -11,15 +11,21 @@ export default function App() {
   const members = "members";
   const teams = "teams";
   const toDoList = "todolist";
-  const teamDetails = "teamdetails";
 
   const [memberList, setMemberList] = useState([]);
   const [teamList, setTeamList] = useState([]);
-  const [teamDetailList, setTeamDetailList] = useState({});
+  const [teamDetails, setTeamDetails] = useState({});
   const [activeTab, setActiveTab] = useState(members);
+  const [showDetails, toggleShowDetails] = useState(false);
+  const [currentTeamId, setCurrentTeamId] = useState(null);
 
   const activeTabCSS = "activeTabCSS";
   const inactiveTabCSS = "inactiveTabCSS";
+
+  const changeTab = (tab) => {
+    setActiveTab(tab);
+    toggleShowDetails(false);
+  };
 
   useEffect(() => {
     getMembers().then((data) => {
@@ -28,15 +34,18 @@ export default function App() {
       let newTeamDetails = {};
       data.members.forEach((member) => {
         if (newTeamDetails[member.team.id])
-          newTeamDetails[member.team.id].push(
+          newTeamDetails[member.team.id].members.push(
             member.first_name + " " + member.last_name
           );
         else
           newTeamDetails = Object.assign(newTeamDetails, {
-            [member.team.id]: [member.first_name + " " + member.last_name],
+            [member.team.id]: {
+              name: member.team.name,
+              members: [member.first_name + " " + member.last_name],
+            },
           });
       });
-      setTeamDetailList(newTeamDetails);
+      setTeamDetails(newTeamDetails);
     });
 
     getTeams().then((data) => {
@@ -48,17 +57,17 @@ export default function App() {
     <HashRouter>
       <button
         type="button"
-        className={activeTab === toDoList ? activeTabCSS : inactiveTabCSS}
+        className={activeTab === members ? activeTabCSS : inactiveTabCSS}
       >
-        <NavLink onClick={() => setActiveTab(members)} to="/">
+        <NavLink onClick={() => changeTab(members)} to="/">
           MEMBERS
         </NavLink>
       </button>
       <button
         type="button"
-        className={activeTab === toDoList ? activeTabCSS : inactiveTabCSS}
+        className={activeTab === teams ? activeTabCSS : inactiveTabCSS}
       >
-        <NavLink onClick={() => setActiveTab(teams)} to={`/${teams}`}>
+        <NavLink onClick={() => changeTab(teams)} to={`/${teams}`}>
           TEAMS
         </NavLink>
       </button>
@@ -66,18 +75,30 @@ export default function App() {
         type="button"
         className={activeTab === toDoList ? activeTabCSS : inactiveTabCSS}
       >
-        <NavLink onClick={() => setActiveTab(toDoList)} to={`/${toDoList}`}>
+        <NavLink onClick={() => changeTab(toDoList)} to={`/${toDoList}`}>
           TO-DO LIST
         </NavLink>
       </button>
       <Routes>
-        <Route exact path="/" element={<Members members={memberList} />} />
+        <Route
+          exact
+          path="/"
+          element={
+            showDetails ? (
+              <TeamDetails details={teamDetails[currentTeamId]} />
+            ) : (
+              <Members
+                members={memberList}
+                toggleTeamDetails={(teamId) => {
+                  setCurrentTeamId(teamId);
+                  toggleShowDetails(true);
+                }}
+              />
+            )
+          }
+        />
         <Route path={`/${teams}`} element={<Teams teams={teamList} />} />
         <Route path={`/${toDoList}`} element={<ToDoList />} />
-        <Route
-          path={`/${teamDetails}`}
-          element={<TeamDetails teamDetails={teamDetailList} />}
-        />
       </Routes>
     </HashRouter>
   );
