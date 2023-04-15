@@ -58,7 +58,11 @@ export default function App() {
       <div className="container center">
         <div className="center">
           <NavLink onClick={() => changeTab(members)} to="/">
-            <button className={activeTab === members ? activeTabClass : ""}>
+            <button
+              className={
+                !showDetails && activeTab === members ? activeTabClass : ""
+              }
+            >
               MEMBERS
             </button>
           </NavLink>

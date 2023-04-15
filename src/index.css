@@ -64,7 +64,7 @@ button {
 }
 
 .activeTab {
-  border-bottom: 4px solid #004f3f;
+  background-color: #004f3f;
 }
 
 .middleTab {
@@ -73,6 +73,10 @@ button {
 }
 
 .task {
+  margin-bottom: 4px;
+}
+
+input {
   margin-bottom: 4px;
 }
 
