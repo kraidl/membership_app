@@ -22,70 +22,96 @@ export default function ToDoList({ items, setItems }) {
   };
 
   return (
-    <ol>
-      {items.map((item, index) => {
-        return (
-          <React.Fragment key={index}>
-            {indexToUpdate === index ? (
+    <table className="center">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Task</th>
+        </tr>
+      </thead>
+      <tbody>
+        {items.map((item, index) => (
+          <tr key={index}>
+            <td>{index + 1}</td>
+            <td>
+              <div className="task">
+                {indexToUpdate === index ? (
+                  <input
+                    type="text"
+                    defaultValue={item}
+                    autoFocus
+                    onBlur={(event) => updateItem(event, index)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") updateItem(event, index);
+                    }}
+                  />
+                ) : (
+                  item
+                )}
+              </div>
+              <button
+                className="button"
+                onClick={() => setIndexToUpdate(index)}
+              >
+                Update
+              </button>
+              <button
+                className="button"
+                onClick={() => {
+                  items.splice(index, 1);
+                  setItems([...items]);
+                }}
+              >
+                Delete
+              </button>
+              {index > 0 ? (
+                <button
+                  className="button"
+                  onClick={() => {
+                    const temp = items[index - 1];
+                    items[index - 1] = items[index];
+                    items[index] = temp;
+                    setItems([...items]);
+                  }}
+                >
+                  Up
+                </button>
+              ) : null}
+              {index < items.length - 1 ? (
+                <button
+                  onClick={() => {
+                    const temp = items[index + 1];
+                    items[index + 1] = items[index];
+                    items[index] = temp;
+                    setItems([...items]);
+                  }}
+                >
+                  Down
+                </button>
+              ) : null}
+            </td>
+          </tr>
+        ))}
+        <tr>
+          <td>∞</td>
+          <td>
+            {createNew ? (
               <input
                 type="text"
-                defaultValue={item}
                 autoFocus
-                onBlur={(event) => updateItem(event, index)}
+                onBlur={createItem}
                 onKeyDown={(event) => {
-                  if (event.key === "Enter") updateItem(event, index);
+                  if (event.key === "Enter") createItem(event);
                 }}
               />
             ) : (
-              <li value={index + 1}>{item}</li>
+              <button onClick={() => toggleCreateNew(true)}>
+                Create New Task
+              </button>
             )}
-            <button onClick={() => setIndexToUpdate(index)}>Update</button>
-            <button
-              onClick={() => {
-                items.splice(index, 1);
-                setItems([...items]);
-              }}
-            >
-              Delete
-            </button>
-            {index > 0 ? (
-              <button
-                onClick={() => {
-                  const temp = items[index - 1];
-                  items[index - 1] = items[index];
-                  items[index] = temp;
-                  setItems([...items]);
-                }}
-              >
-                Up
-              </button>
-            ) : null}
-            {index < items.length - 1 ? (
-              <button
-                onClick={() => {
-                  const temp = items[index + 1];
-                  items[index + 1] = items[index];
-                  items[index] = temp;
-                  setItems([...items]);
-                }}
-              >
-                Down
-              </button>
-            ) : null}
-          </React.Fragment>
-        );
-      })}
-      {createNew ? (
-        <input
-          type="text"
-          autoFocus
-          onBlur={createItem}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") createItem(event);
-          }}
-        />
-      ) : null}
-      <button onClick={() => toggleCreateNew(true)}>Create</button>
-    </ol>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 }

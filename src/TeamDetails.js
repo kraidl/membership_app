@@ -2,13 +2,19 @@ import React from "react";
 
 export default function TeamDetails({ team }) {
   return (
-    <React.Fragment>
-      <div>{team.name}</div>
-      <ul>
-        {team.members.map((member, index) => (
-          <li key={index}>{member}</li>
+    <table className="center">
+      <thead>
+        <tr>
+          <th>{team.name}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {team.members.map((member) => (
+          <tr key={member.id}>
+            <td>{member}</td>
+          </tr>
         ))}
-      </ul>
-    </React.Fragment>
+      </tbody>
+    </table>
   );
 }

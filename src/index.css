@@ -1,13 +1,94 @@
+html,
+#root,
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  font-family: sans-serif;
+  font-size: 0.9em;
+  background-color: #dddddd;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr {
+  background-color: #009879;
+  color: #fff;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+button {
+  appearance: none;
+  background-color: #009879;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.activeTab {
+  border-bottom: 4px solid #004f3f;
+}
+
+.middleTab {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.task {
+  margin-bottom: 4px;
+}
+
+.button {
+  margin-right: 4px;
+}
+
+.center {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  padding: 40px;
+  background-color: #fff;
+  min-width: 1000px;
+  height: 100%;
 }
