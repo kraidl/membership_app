@@ -18,6 +18,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState(members);
   const [showDetails, toggleShowDetails] = useState(false);
   const [currentTeamId, setCurrentTeamId] = useState(null);
+  const [toDoListItems, setToDoListItems] = useState([]);
 
   const activeTabCSS = "activeTabCSS";
   const inactiveTabCSS = "inactiveTabCSS";
@@ -91,7 +92,15 @@ export default function App() {
           }
         />
         <Route path={`/${teams}`} element={<Teams teams={teamList} />} />
-        <Route path={`/${toDoList}`} element={<ToDoList />} />
+        <Route
+          path={`/${toDoList}`}
+          element={
+            <ToDoList
+              items={toDoListItems}
+              setItems={(items) => setToDoListItems(items)}
+            />
+          }
+        />
       </Routes>
     </HashRouter>
   );

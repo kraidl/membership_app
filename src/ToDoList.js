@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-export default function ToDoList() {
-  const [items, setItems] = useState([]);
+export default function ToDoList({ items, setItems }) {
   const [indexToUpdate, setIndexToUpdate] = useState(null);
   const [createNew, toggleCreateNew] = useState(false);
 
