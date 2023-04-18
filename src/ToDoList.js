@@ -64,7 +64,7 @@ export default function ToDoList({ items, setItems }) {
               >
                 Delete
               </button>
-              {index > 0 ? (
+              {index > 0 && (
                 <button
                   className="button"
                   onClick={() => {
@@ -76,8 +76,8 @@ export default function ToDoList({ items, setItems }) {
                 >
                   Up
                 </button>
-              ) : null}
-              {index < items.length - 1 ? (
+              )}
+              {index < items.length - 1 && (
                 <button
                   onClick={() => {
                     const temp = items[index + 1];
@@ -88,7 +88,7 @@ export default function ToDoList({ items, setItems }) {
                 >
                   Down
                 </button>
-              ) : null}
+              )}
             </td>
           </tr>
         ))}

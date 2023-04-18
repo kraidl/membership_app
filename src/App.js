@@ -60,7 +60,7 @@ export default function App() {
           <NavLink onClick={() => changeTab(members)} to="/">
             <button
               className={
-                !showDetails && activeTab === members ? activeTabClass : ""
+                !showDetails && activeTab === members && activeTabClass
               }
             >
               MEMBERS
@@ -68,15 +68,13 @@ export default function App() {
           </NavLink>
           <NavLink onClick={() => changeTab(teams)} to={`/${teams}`}>
             <button
-              className={`middleTab ${
-                activeTab === teams ? activeTabClass : ""
-              }`}
+              className={`middleTab ${activeTab === teams && activeTabClass}`}
             >
               TEAMS
             </button>
           </NavLink>
           <NavLink onClick={() => changeTab(toDoList)} to={`/${toDoList}`}>
-            <button className={activeTab === toDoList ? activeTabClass : ""}>
+            <button className={activeTab === toDoList && activeTabClass}>
               TO-DO LIST
             </button>
           </NavLink>
