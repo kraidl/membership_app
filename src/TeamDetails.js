@@ -9,8 +9,8 @@ export default function TeamDetails({ team }) {
         </tr>
       </thead>
       <tbody>
-        {team.members.map((member) => (
-          <tr key={member.id}>
+        {team.members.map((member, index) => (
+          <tr key={index}>
             <td>{member}</td>
           </tr>
         ))}
